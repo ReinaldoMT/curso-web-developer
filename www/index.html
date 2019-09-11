@@ -5,24 +5,31 @@
   <title>Nova página</title>
   <style type="text/css">
   body {
-    font-family: Verdana, Geneva, Tahoma, sans-serif
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
     /* font-family: Georgia, 'Times New Roman', Times, serif */
   }
-  .minha-classe {
-    color: #7777FF;
-  }
-  .minha-outra-classe {
-    background-color: #55FF55;
-    border: solid 1px #FF9900;
+  .tarefas {
+    background-color: #EAEAEA;
+    border: solid 1px #DDDDDD;
     padding: 5px;
+    box-shadow: 0 0 2px 2px #CCCCCC;
+    border-radius: 5px;
+    margin-bottom: 1em;
   }
   </style>
 </head>
 
 <body>
-  <p>Nova página</p>
-  <p class="minha-classe">Texto formatado</p>
-  <p class="minha-classe minha-outra-classe">Texto formatado</p>
+  <h1>Nova página</h1>
+  <h2>Tarefas:</h2>
+  <div class="tarefas">
+    <ul>
+      <li>Criar rotina e botão de chamada para limpaHtml();</li>
+      <li>Explorar código CSS desta caixa de tarefas;</li>
+      <li>Fazer com que a caixa onde aparecem os resultados das funções tenha o mesmo estilo desta caixa;</li>
+    </ul>
+  </div>
   
   <button onclick="defineHtml()">Executar defineHtml</button>
   <button onclick="adicionaHtml()">Executar adicionaHtml</button>

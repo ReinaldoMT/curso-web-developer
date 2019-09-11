@@ -11,4 +11,8 @@ Endereço para download: https://nodejs.org/en/
 npm install -g serve
 ```
 
+### 3 - Iniciar o servidor de testes
+```sh
+serve
+```
 

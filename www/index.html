@@ -17,6 +17,12 @@
     border-radius: 5px;
     margin-bottom: 1em;
   }
+  .tarefas:empty {
+    display: none;
+  }
+  .botoes-box {
+    margin-bottom: 1em;
+  }
   </style>
 </head>
 
@@ -31,10 +37,13 @@
     </ul>
   </div>
   
-  <button onclick="defineHtml()">Executar defineHtml</button>
-  <button onclick="adicionaHtml()">Executar adicionaHtml</button>
+  <div class="botoes-box">
+    <button onclick="defineHtml()">Executar defineHtml</button>
+    <button onclick="adicionaHtml()">Executar adicionaHtml</button>
+    <button onclick="limpaHtml()">Executar limpaHtml</button>
+  </div>
 
-  <div id="conteudo"></div>
+  <div id="conteudo" class="tarefas"></div>
 </body>
 <script type="text/javascript">
   function defineHtml () {
@@ -42,6 +51,9 @@
   }
   function adicionaHtml () {
     document.getElementById('conteudo').innerHTML += '<p>Conteúdo adicionado via javascript via adicionaHTML()</p>'
+  }
+  function limpaHtml () {
+    document.getElementById('conteudo').innerHTML = ''
   }
 </script>
 

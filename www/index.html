@@ -9,18 +9,33 @@
     /* font-family: Georgia, 'Times New Roman', Times, serif */
   }
   .minha-classe {
-    color: #7777FF
+    color: #7777FF;
   }
   .minha-outra-classe {
-    background-color: #FFFF55
+    background-color: #55FF55;
+    border: solid 1px #FF9900;
+    padding: 5px;
   }
   </style>
 </head>
 
 <body>
   <p>Nova página</p>
-  <p class="minha-classe">Texto foratado</p>
-  <p class="minha-classe minha-outra-classe">Texto foratado</p>
+  <p class="minha-classe">Texto formatado</p>
+  <p class="minha-classe minha-outra-classe">Texto formatado</p>
+  
+  <button onclick="defineHtml()">Executar defineHtml</button>
+  <button onclick="adicionaHtml()">Executar adicionaHtml</button>
+
+  <div id="conteudo"></div>
 </body>
+<script type="text/javascript">
+  function defineHtml () {
+    document.getElementById('conteudo').innerHTML = '<p>Conteúdo inserido via javascript via defineHTML()</p>'
+  }
+  function adicionaHtml () {
+    document.getElementById('conteudo').innerHTML += '<p>Conteúdo adicionado via javascript via adicionaHTML()</p>'
+  }
+</script>
 
 </html>

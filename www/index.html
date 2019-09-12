@@ -38,7 +38,7 @@
       <li class="ok">Criar rotina e botão de chamada para limpaHtml();</li>
       <li class="ok">Explorar código CSS desta caixa de tarefas;</li>
       <li class="ok">Fazer com que a caixa onde aparecem os resultados das funções tenha o mesmo estilo desta caixa;</li>
-      <li>Utilizando a função defineHtml crie mais dois botões que limpam o conteúdo do <strong>box1</strong> e <strong>box2</strong> respectivamente;</li>
+      <li class="ok">Utilizando a função defineHtml crie mais dois botões que limpam o conteúdo do <strong>box1</strong> e <strong>box2</strong> respectivamente;</li>
     </ul>
   </div>
   
@@ -47,6 +47,8 @@
     <button onclick="defineHtml('box2', 'Conteúdo inserido via parâmetro!', true)">box2 adiciona</button>
     <button onclick="defineHtml('box1', 'Conteúdo inserido via parâmetro!', false)">box1 define</button>
     <button onclick="defineHtml('box2', 'Conteúdo inserido via parâmetro!', false)">box2 define</button>
+    <button onclick="defineHtml('box1', '', false)">box1 limpa</button>
+    <button onclick="defineHtml('box2', '', false)">box2 limpa</button>
   </div>
   <h3>box1</h3>
   <div id="box1" class="tarefas"></div>

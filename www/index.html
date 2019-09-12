@@ -4,63 +4,114 @@
 <head>
   <title>Nova página</title>
   <style type="text/css">
-  body {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 14px;
-    /* font-family: Georgia, 'Times New Roman', Times, serif */
-  }
-  .tarefas {
-    background-color: #EAEAEA;
-    border: solid 1px #DDDDDD;
-    padding: 5px;
-    box-shadow: 0 0 2px 2px #CCCCCC;
-    border-radius: 5px;
-    margin-bottom: 1em;
-  }
-  /* .tarefas:empty {
+    body {
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      font-size: 14px;
+      /* font-family: Georgia, 'Times New Roman', Times, serif */
+    }
+
+    select, input[type='text'] {
+      padding: 6px;
+    }
+
+    input[type='text'] {
+      min-width: 400px;
+    }
+
+    button {
+      padding: 10px;
+      background-color: #3399FF;
+      color: #FFFFFF;
+      border: solid 1px #2277CC;
+    }
+
+    code {
+      background-color: #CCCCCC;
+    }
+
+    button:hover {
+      background-color: #2277CC;
+    }
+
+    .tarefas {
+      background-color: #EAEAEA;
+      border: solid 1px #DDDDDD;
+      padding: 5px;
+      box-shadow: 0 0 2px 2px #CCCCCC;
+      border-radius: 5px;
+      margin-bottom: 1em;
+    }
+
+    /* .tarefas:empty {
     display: none;
   } */
-  .tarefas .ok {
-    text-decoration: line-through;
-    color: #666666;
-  }
-  .botoes-box {
-    margin-bottom: 1em;
-  }
+    .tarefas .ok {
+      text-decoration: line-through;
+      color: #666666;
+    }
+
+    .botoes-box {
+      margin-bottom: 1em;
+    }
   </style>
 </head>
 
 <body>
-  <h1>Nova página</h1>
+  <h1>Inputs</h1>
   <h2>Tarefas:</h2>
   <div class="tarefas">
     <ul>
-      <li class="ok">Criar rotina e botão de chamada para limpaHtml();</li>
-      <li class="ok">Explorar código CSS desta caixa de tarefas;</li>
-      <li class="ok">Fazer com que a caixa onde aparecem os resultados das funções tenha o mesmo estilo desta caixa;</li>
-      <li class="ok">Utilizando a função defineHtml crie mais dois botões que limpam o conteúdo do <strong>box1</strong> e <strong>box2</strong> respectivamente;</li>
+      <li>Explorar as novas regras CSS para os elementos select, input e button;</li>
+      <li>Explorar o uso do console [F12];</li>
+      <li>Criar uma função chamada <code>_e</code> para encurtar o comando <code>document.getElementById()</code>;</li>
+      <li>Aplicar a nova função <code>_e</code> no documento;</li>
     </ul>
   </div>
-  
+
+  <form method="GET" id="form1">
+    <p>
+      <label for="campoBox">Local</label><br />
+      <select id="campoBox">
+        <option value="box1">Caixa 1</option>
+        <option value="box2">Caixa 2</option>
+      </select>
+    </p>
+    <p>
+      <label for="campoConteudo">Conteúdo</label><br />
+      <input id="campoConteudo" type="text" placeholder="Insira o conteúdo aqui">
+    </p>
+    <p>
+        <label for="campoAdiciona">Adicionar?</label><br />
+        <input id="campoAdiciona" type="checkbox" />
+      </p>
+    <!-- <div class="botoes-box">
+      <button type="submit">Enviar</button>
+    </div> -->
+  </form>
+
   <div class="botoes-box">
-    <button onclick="defineHtml('box1', 'Conteúdo inserido via parâmetro!', true)">box1 adiciona</button>
-    <button onclick="defineHtml('box2', 'Conteúdo inserido via parâmetro!', true)">box2 adiciona</button>
-    <button onclick="defineHtml('box1', 'Conteúdo inserido via parâmetro!', false)">box1 define</button>
-    <button onclick="defineHtml('box2', 'Conteúdo inserido via parâmetro!', false)">box2 define</button>
-    <button onclick="defineHtml('box1', '', false)">box1 limpa</button>
-    <button onclick="defineHtml('box2', '', false)">box2 limpa</button>
+    <button onclick="defineHtml(
+      document.getElementById('campoBox').value,
+      document.getElementById('campoConteudo').value,
+      document.getElementById('campoAdiciona').checked
+      )">Adicionar</button>
   </div>
-  <h3>box1</h3>
+
+  <h3>Caixa 1</h3>
   <div id="box1" class="tarefas"></div>
 
-  <h3>box2</h3>
+  <h3>Caixa 2</h3>
   <div id="box2" class="tarefas"></div>
 </body>
 <script type="text/javascript">
   /**
-  * Comente suas funções para que possa ser dada manutenção a seu código
+  * Adiciona ou modifica o HTML de um elemento
+  * @param elementoId
+  * @param conteudo
+  * @param adiciona
   */
-  function defineHtml (elementoId, conteudo, adiciona) {
+  function defineHtml(elementoId, conteudo, adiciona) {
+    console.log(elementoId, conteudo, adiciona)
     const elemento = document.getElementById(elementoId)
     if (adiciona) {
       elemento.innerHTML += `<p>${conteudo}</p>` // elemento.innerHTML = elemento.innerHTML + '<p>' + conteudo + '</p>'

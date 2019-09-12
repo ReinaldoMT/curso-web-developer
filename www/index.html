@@ -8,17 +8,18 @@
 
 <body>
   <h1>Inputs</h1>
-  <h2>Tarefas:</h2>
+  <!-- <h2>Tarefas:</h2>
   <div class="tarefas">
     <ul>
-      <li class="ok">Explorar as novas regras CSS para os elementos select, input e button;</li>
-      <li class="ok">Explorar o uso do console [F12];</li>
-      <li class="ok">Criar uma função chamada <code>_e</code> para encurtar o comando <code>document.getElementById()</code>;</li>
-      <li class="ok">Aplicar a nova função <code>_e</code> no documento;</li>
+      <li></li>
     </ul>
-  </div>
+  </div> -->
 
   <form method="GET" id="form1">
+    <p>
+      <label for="campoId">ID</label><br />
+      <input id="campoId" type="text" placeholder="Insira o ID aqui">
+    </p>
     <p>
       <label for="campoBox">Local</label><br />
       <select id="campoBox">
@@ -30,10 +31,10 @@
       <label for="campoConteudo">Conteúdo</label><br />
       <input id="campoConteudo" type="text" placeholder="Insira o conteúdo aqui">
     </p>
-    <p>
+    <!-- <p>
         <label for="campoAdiciona">Adicionar?</label><br />
         <input id="campoAdiciona" type="checkbox" />
-      </p>
+      </p> -->
     <!-- <div class="botoes-box">
       <button type="submit">Enviar</button>
     </div> -->
@@ -41,6 +42,9 @@
 
   <div class="botoes-box">
     <button onclick="enviarDados()">Adicionar</button>
+    <button onclick="depurarDados()">Depurar</button>
+    <button onclick="carregarPorId()">Carregar por ID</button>
+    <button onclick="carregarDados()">Carregar dados na tela</button>
   </div>
 
   <h3>Caixa 1</h3>
@@ -53,11 +57,34 @@
 <script type="text/javascript">
   // Scripts locais geralmente possuem referência específica do código HTML
   function enviarDados () {
-    defineHtml(
-      _e('campoBox').value,
-      _e('campoConteudo').value,
-      _e('campoAdiciona').checked
-    )
+    const objeto = {
+      id: _e('campoId').value,
+      box: _e('campoBox').value,
+      conteudo: _e('campoConteudo').value,
+      isActive: true,
+      tipo: 'meus dados',
+      criadoEm: new Date()
+    }
+    addData(objeto)
+    defineHtml('box1', `${objeto.conteudo} adicionado com sucesso`, false)
+  }
+
+  function depurarDados () {
+    console.table(getData())
+  }
+
+  function carregarPorId () {
+    const id = window.prompt('Informe o id')
+    const objeto = getDataById(id)
+    window.alert(`ID: ${objeto.id}, Conteúdo: ${objeto.conteudo}, Criado em: ${objeto.criadoEm.toLocaleString()}`)
+  }
+
+  function carregarDados () {
+    const dados = getData()
+    for (let objeto of dados) {
+      // defineHtml(objeto.box, `ID: ${objeto.id}, Conteúdo: ${objeto.conteudo}, Criado em: ${objeto.criadoEm.toLocaleString()}`, true)
+      defineHtml(objeto.box, JSON.stringify(objeto), true)
+    }
   }
 </script>
 </html>

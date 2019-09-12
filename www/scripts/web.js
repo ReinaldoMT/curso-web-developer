@@ -1,4 +1,5 @@
 'strict'
+const data = []
 /**
  * Obtém um elemento através do ID do mesmo
  * @param {string} elementId
@@ -22,4 +23,28 @@ function defineHtml (elementoId, conteudo, adiciona) {
   } else {
     elemento.innerHTML = conteudo
   }
+}
+
+/**
+ * Adiciona um objeto ao array de dados
+ * @param {*} dataObj
+ * @return {void}
+ */
+function addData (dataObj) {
+  data.push(dataObj)
+}
+
+/**
+ * @return {any[]}
+ */
+function getData () {
+  return data
+}
+
+/**
+ * @param {string} id
+ * @return {*}
+ */
+function getDataById (id) {
+  return data.find(d => d.id === id)
 }

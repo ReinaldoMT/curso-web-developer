@@ -90,11 +90,7 @@
   </form>
 
   <div class="botoes-box">
-    <button onclick="defineHtml(
-      document.getElementById('campoBox').value,
-      document.getElementById('campoConteudo').value,
-      document.getElementById('campoAdiciona').checked
-      )">Adicionar</button>
+    <button onclick="defineHtml(_e('campoBox').value, _e('campoConteudo').value, _e('campoAdiciona').checked)">Adicionar</button>
   </div>
 
   <h3>Caixa 1</h3>
@@ -105,14 +101,23 @@
 </body>
 <script type="text/javascript">
   /**
+  * Obtém um elemento através do ID do mesmo
+  * @param elementId
+  * @returns HTMLElement
+  */
+  function _e (elementId) {
+    return document.getElementById(elementId)
+  }
+
+  /**
   * Adiciona ou modifica o HTML de um elemento
   * @param elementoId
   * @param conteudo
   * @param adiciona
   */
-  function defineHtml(elementoId, conteudo, adiciona) {
+  function defineHtml (elementoId, conteudo, adiciona) {
     console.log(elementoId, conteudo, adiciona)
-    const elemento = document.getElementById(elementoId)
+    const elemento = _e(elementoId)
     if (adiciona) {
       elemento.innerHTML += `<p>${conteudo}</p>` // elemento.innerHTML = elemento.innerHTML + '<p>' + conteudo + '</p>'
     } else {

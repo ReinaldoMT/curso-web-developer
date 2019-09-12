@@ -4,8 +4,7 @@ body {
   /* font-family: Georgia, 'Times New Roman', Times, serif */
 }
 
-select,
-input[type='text'] {
+select, input[type='text'] {
   padding: 6px;
 }
 
@@ -20,15 +19,15 @@ button {
   border: solid 1px #2277CC;
 }
 
-code {
-  background-color: #CCCCCC;
-}
-
 button:hover {
   background-color: #2277CC;
 }
 
-.tarefas {
+code {
+  background-color: #CCCCCC;
+}
+
+.caixa {
   background-color: #EAEAEA;
   border: solid 1px #DDDDDD;
   padding: 5px;
@@ -37,14 +36,7 @@ button:hover {
   margin-bottom: 1em;
 }
 
-/* .tarefas:empty {
-display: none;
-} */
-.tarefas .ok {
-  text-decoration: line-through;
-  color: #666666;
-}
-
-.botoes-box {
+.botoes {
   margin-bottom: 1em;
 }
+

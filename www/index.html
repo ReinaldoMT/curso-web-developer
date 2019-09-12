@@ -3,88 +3,103 @@
 
 <head>
   <title>Nova página</title>
-  <link rel="stylesheet" type="text/css" href="./styles/web.css" charset="utf-8"/>
+  <link href="styles/web.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
-  <h1>Inputs</h1>
+  <h1>Formulário</h1>
   <!-- <h2>Tarefas:</h2>
-  <div class="tarefas">
-    <ul>
-      <li></li>
-    </ul>
-  </div> -->
+    <div class="caixa">
+      <ul>
+        <li>Criar rotina e botão de chamada para limpaHtml();</li>
+        <li>Explorar código CSS desta caixa de tarefas;</li>
+        <li>Fazer com que a caixa onde aparecem os resultados das funções tenha o mesmo estilo desta caixa;</li>
+      </ul>
+    </div> -->
 
-  <form method="GET" id="form1">
+  <form onsubmit="enviaForm(event); return false;" id="form1">
     <p>
-      <label for="campoId">ID</label><br />
-      <input id="campoId" type="text" placeholder="Insira o ID aqui">
-    </p>
-    <p>
-      <label for="campoBox">Local</label><br />
-      <select id="campoBox">
+      <label for="campoBox">Id:</label><br />
+      <select id="campoBox" name="box">
         <option value="box1">Caixa 1</option>
         <option value="box2">Caixa 2</option>
       </select>
     </p>
     <p>
-      <label for="campoConteudo">Conteúdo</label><br />
-      <input id="campoConteudo" type="text" placeholder="Insira o conteúdo aqui">
+      <label for="campoId">Id:</label><br />
+      <input type="text" id="campoId" value="" name="id" />
     </p>
-    <!-- <p>
-        <label for="campoAdiciona">Adicionar?</label><br />
-        <input id="campoAdiciona" type="checkbox" />
-      </p> -->
-    <!-- <div class="botoes-box">
+    <p>
+      <label for="campoNome">Nome:</label><br />
+      <input type="text" id="campoNome" value="" name="nome" />
+    </p>
+    <div class="botoes">
       <button type="submit">Enviar</button>
-    </div> -->
+      <button type="button" onclick="logData()">Log</button>
+      <button type="button" onclick="printData()">Ver dados</button>
+      <button type="button" onclick="limpa()">Limpar tela</button>
+      <button type="button" onclick="buscaId()">Busca ID</button>
+    </div>
   </form>
 
-  <div class="botoes-box">
-    <button onclick="enviarDados()">Adicionar</button>
-    <button onclick="depurarDados()">Depurar</button>
-    <button onclick="carregarPorId()">Carregar por ID</button>
-    <button onclick="carregarDados()">Carregar dados na tela</button>
-  </div>
+  <h2>Box 1</h2>
+  <div id="box1" class="caixa"></div>
 
-  <h3>Caixa 1</h3>
-  <div id="box1" class="tarefas"></div>
-
-  <h3>Caixa 2</h3>
-  <div id="box2" class="tarefas"></div>
+  <h2>Box 2</h2>
+  <div id="box2" class="caixa"></div>
 </body>
-<script type="text/javascript" src="./scripts/web.js"></script>
+<script type="text/javascript" src="scripts/web.js"></script>
+<script type="text/javascript" src="scripts/data.js"></script>
 <script type="text/javascript">
-  // Scripts locais geralmente possuem referência específica do código HTML
-  function enviarDados () {
-    const objeto = {
-      id: _e('campoId').value,
-      box: _e('campoBox').value,
-      conteudo: _e('campoConteudo').value,
-      isActive: true,
-      tipo: 'meus dados',
-      criadoEm: new Date()
-    }
-    addData(objeto)
-    defineHtml('box1', `${objeto.conteudo} adicionado com sucesso`, false)
+function enviaForm (event) {
+  event.preventDefault()
+  const obj = {
+    id: _e('campoId').value || new Date().getTime().toString(),
+    name: _e('campoNome').value,
+    box: _e('campoBox').value,
+    createdAt: new Date()
   }
 
-  function depurarDados () {
-    console.table(getData())
-  }
+  addData(obj)
+  setHtml('box1', 'Dados enviados', false)
+}
+function logData () {
+  const data = getData()
+  console.table(data)
+}
 
-  function carregarPorId () {
-    const id = window.prompt('Informe o id')
-    const objeto = getDataById(id)
-    window.alert(`ID: ${objeto.id}, Conteúdo: ${objeto.conteudo}, Criado em: ${objeto.criadoEm.toLocaleString()}`)
+function printData () {
+  limpa()
+  const data = getData()
+  for (const obj of data) {
+    setHtml(
+      obj.box,
+      `Id: ${obj.id}, Nome: ${obj.name}, Criado em: ${obj.createdAt.toLocaleString()}`,
+      true
+    )
   }
+}
 
-  function carregarDados () {
-    const dados = getData()
-    for (let objeto of dados) {
-      // defineHtml(objeto.box, `ID: ${objeto.id}, Conteúdo: ${objeto.conteudo}, Criado em: ${objeto.criadoEm.toLocaleString()}`, true)
-      defineHtml(objeto.box, JSON.stringify(objeto), true)
-    }
+function limpa () {
+  // setHtml('box1', '', false)
+  // setHtml('box2', '', false)
+
+  const containers = ['box1', 'box2']
+
+  for (const item of containers) {
+    setHtml(item, '', false)
   }
+  _e('form1').reset()
+}
+
+function buscaId () {
+  const id = window.prompt('Informe o ID')
+  const obj = getById(id)
+  _e('campoId').value = obj.id,
+  _e('campoNome').value = obj.name,
+  _e('campoBox').value = obj.box,
+  console.log(obj)
+}
 </script>
+
 </html>

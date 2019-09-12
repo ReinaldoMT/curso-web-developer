@@ -1,50 +1,21 @@
-'strict'
-const data = []
 /**
- * Obtém um elemento através do ID do mesmo
- * @param {string} elementId
- * @returns {HTMLElement}
+ * Abreviação de document.getElementById(containerId)
+ * @param {string} containerId
  */
-function _e (elementId) {
-  return document.getElementById(elementId)
+function _e (containerId) {
+  return document.getElementById(containerId)
 }
 
 /**
- * Adiciona ou modifica o HTML de um elemento
- * @param {string} elementoId
- * @param {string} conteudo
- * @param {string} adiciona
- * @returns {void}
+ * Adiciona ou troca o HTML de um elemento
+ * @param {string} containerId
+ * @param {string} content
+ * @param {boolean} add
  */
-function defineHtml (elementoId, conteudo, adiciona) {
-  const elemento = _e(elementoId)
-  if (adiciona) {
-    elemento.innerHTML += `<p>${conteudo}</p>` // elemento.innerHTML = elemento.innerHTML + '<p>' + conteudo + '</p>'
+function setHtml (containerId, content, add) {
+  if (add) {
+    _e(containerId).innerHTML += `<p>${content}</p>` // '<p>' + content + '</p>'
   } else {
-    elemento.innerHTML = conteudo
+    _e(containerId).innerHTML = content
   }
-}
-
-/**
- * Adiciona um objeto ao array de dados
- * @param {*} dataObj
- * @return {void}
- */
-function addData (dataObj) {
-  data.push(dataObj)
-}
-
-/**
- * @return {any[]}
- */
-function getData () {
-  return data
-}
-
-/**
- * @param {string} id
- * @return {*}
- */
-function getDataById (id) {
-  return data.find(d => d.id === id)
 }

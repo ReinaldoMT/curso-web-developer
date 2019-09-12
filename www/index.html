@@ -17,8 +17,12 @@
     border-radius: 5px;
     margin-bottom: 1em;
   }
-  .tarefas:empty {
+  /* .tarefas:empty {
     display: none;
+  } */
+  .tarefas .ok {
+    text-decoration: line-through;
+    color: #666666;
   }
   .botoes-box {
     margin-bottom: 1em;
@@ -31,29 +35,36 @@
   <h2>Tarefas:</h2>
   <div class="tarefas">
     <ul>
-      <li>Criar rotina e botão de chamada para limpaHtml();</li>
-      <li>Explorar código CSS desta caixa de tarefas;</li>
-      <li>Fazer com que a caixa onde aparecem os resultados das funções tenha o mesmo estilo desta caixa;</li>
+      <li class="ok">Criar rotina e botão de chamada para limpaHtml();</li>
+      <li class="ok">Explorar código CSS desta caixa de tarefas;</li>
+      <li class="ok">Fazer com que a caixa onde aparecem os resultados das funções tenha o mesmo estilo desta caixa;</li>
+      <li>Utilizando a função defineHtml crie mais dois botões que limpam o conteúdo do <strong>box1</strong> e <strong>box2</strong> respectivamente;</li>
     </ul>
   </div>
   
   <div class="botoes-box">
-    <button onclick="defineHtml()">Executar defineHtml</button>
-    <button onclick="adicionaHtml()">Executar adicionaHtml</button>
-    <button onclick="limpaHtml()">Executar limpaHtml</button>
+    <button onclick="defineHtml('box1', 'Conteúdo inserido via parâmetro!', true)">box1 adiciona</button>
+    <button onclick="defineHtml('box2', 'Conteúdo inserido via parâmetro!', true)">box2 adiciona</button>
+    <button onclick="defineHtml('box1', 'Conteúdo inserido via parâmetro!', false)">box1 define</button>
+    <button onclick="defineHtml('box2', 'Conteúdo inserido via parâmetro!', false)">box2 define</button>
   </div>
+  <h3>box1</h3>
+  <div id="box1" class="tarefas"></div>
 
-  <div id="conteudo" class="tarefas"></div>
+  <h3>box2</h3>
+  <div id="box2" class="tarefas"></div>
 </body>
 <script type="text/javascript">
-  function defineHtml () {
-    document.getElementById('conteudo').innerHTML = '<p>Conteúdo inserido via javascript via defineHTML()</p>'
-  }
-  function adicionaHtml () {
-    document.getElementById('conteudo').innerHTML += '<p>Conteúdo adicionado via javascript via adicionaHTML()</p>'
-  }
-  function limpaHtml () {
-    document.getElementById('conteudo').innerHTML = ''
+  /**
+  * Comente suas funções para que possa ser dada manutenção a seu código
+  */
+  function defineHtml (elementoId, conteudo, adiciona) {
+    const elemento = document.getElementById(elementoId)
+    if (adiciona) {
+      elemento.innerHTML += `<p>${conteudo}</p>` // elemento.innerHTML = elemento.innerHTML + '<p>' + conteudo + '</p>'
+    } else {
+      elemento.innerHTML = conteudo
+    }
   }
 </script>
 

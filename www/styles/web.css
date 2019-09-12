@@ -1,0 +1,50 @@
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 14px;
+  /* font-family: Georgia, 'Times New Roman', Times, serif */
+}
+
+select,
+input[type='text'] {
+  padding: 6px;
+}
+
+input[type='text'] {
+  min-width: 400px;
+}
+
+button {
+  padding: 10px;
+  background-color: #3399FF;
+  color: #FFFFFF;
+  border: solid 1px #2277CC;
+}
+
+code {
+  background-color: #CCCCCC;
+}
+
+button:hover {
+  background-color: #2277CC;
+}
+
+.tarefas {
+  background-color: #EAEAEA;
+  border: solid 1px #DDDDDD;
+  padding: 5px;
+  box-shadow: 0 0 2px 2px #CCCCCC;
+  border-radius: 5px;
+  margin-bottom: 1em;
+}
+
+/* .tarefas:empty {
+display: none;
+} */
+.tarefas .ok {
+  text-decoration: line-through;
+  color: #666666;
+}
+
+.botoes-box {
+  margin-bottom: 1em;
+}

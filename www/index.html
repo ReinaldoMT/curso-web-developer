@@ -3,57 +3,7 @@
 
 <head>
   <title>Nova página</title>
-  <style type="text/css">
-    body {
-      font-family: Verdana, Geneva, Tahoma, sans-serif;
-      font-size: 14px;
-      /* font-family: Georgia, 'Times New Roman', Times, serif */
-    }
-
-    select, input[type='text'] {
-      padding: 6px;
-    }
-
-    input[type='text'] {
-      min-width: 400px;
-    }
-
-    button {
-      padding: 10px;
-      background-color: #3399FF;
-      color: #FFFFFF;
-      border: solid 1px #2277CC;
-    }
-
-    code {
-      background-color: #CCCCCC;
-    }
-
-    button:hover {
-      background-color: #2277CC;
-    }
-
-    .tarefas {
-      background-color: #EAEAEA;
-      border: solid 1px #DDDDDD;
-      padding: 5px;
-      box-shadow: 0 0 2px 2px #CCCCCC;
-      border-radius: 5px;
-      margin-bottom: 1em;
-    }
-
-    /* .tarefas:empty {
-    display: none;
-  } */
-    .tarefas .ok {
-      text-decoration: line-through;
-      color: #666666;
-    }
-
-    .botoes-box {
-      margin-bottom: 1em;
-    }
-  </style>
+  <link rel="stylesheet" type="text/css" href="./styles/web.css" charset="utf-8"/>
 </head>
 
 <body>
@@ -61,10 +11,10 @@
   <h2>Tarefas:</h2>
   <div class="tarefas">
     <ul>
-      <li>Explorar as novas regras CSS para os elementos select, input e button;</li>
-      <li>Explorar o uso do console [F12];</li>
-      <li>Criar uma função chamada <code>_e</code> para encurtar o comando <code>document.getElementById()</code>;</li>
-      <li>Aplicar a nova função <code>_e</code> no documento;</li>
+      <li class="ok">Explorar as novas regras CSS para os elementos select, input e button;</li>
+      <li class="ok">Explorar o uso do console [F12];</li>
+      <li class="ok">Criar uma função chamada <code>_e</code> para encurtar o comando <code>document.getElementById()</code>;</li>
+      <li class="ok">Aplicar a nova função <code>_e</code> no documento;</li>
     </ul>
   </div>
 
@@ -90,7 +40,7 @@
   </form>
 
   <div class="botoes-box">
-    <button onclick="defineHtml(_e('campoBox').value, _e('campoConteudo').value, _e('campoAdiciona').checked)">Adicionar</button>
+    <button onclick="enviarDados()">Adicionar</button>
   </div>
 
   <h3>Caixa 1</h3>
@@ -99,31 +49,15 @@
   <h3>Caixa 2</h3>
   <div id="box2" class="tarefas"></div>
 </body>
+<script type="text/javascript" src="./scripts/web.js"></script>
 <script type="text/javascript">
-  /**
-  * Obtém um elemento através do ID do mesmo
-  * @param elementId
-  * @returns HTMLElement
-  */
-  function _e (elementId) {
-    return document.getElementById(elementId)
-  }
-
-  /**
-  * Adiciona ou modifica o HTML de um elemento
-  * @param elementoId
-  * @param conteudo
-  * @param adiciona
-  */
-  function defineHtml (elementoId, conteudo, adiciona) {
-    console.log(elementoId, conteudo, adiciona)
-    const elemento = _e(elementoId)
-    if (adiciona) {
-      elemento.innerHTML += `<p>${conteudo}</p>` // elemento.innerHTML = elemento.innerHTML + '<p>' + conteudo + '</p>'
-    } else {
-      elemento.innerHTML = conteudo
-    }
+  // Scripts locais geralmente possuem referência específica do código HTML
+  function enviarDados () {
+    defineHtml(
+      _e('campoBox').value,
+      _e('campoConteudo').value,
+      _e('campoAdiciona').checked
+    )
   }
 </script>
-
 </html>

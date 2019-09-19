@@ -7,99 +7,81 @@
 </head>
 
 <body>
-  <h1>Formulário</h1>
-  <!-- <h2>Tarefas:</h2>
-    <div class="caixa">
-      <ul>
-        <li>Criar rotina e botão de chamada para limpaHtml();</li>
-        <li>Explorar código CSS desta caixa de tarefas;</li>
-        <li>Fazer com que a caixa onde aparecem os resultados das funções tenha o mesmo estilo desta caixa;</li>
-      </ul>
-    </div> -->
+  <h1>Clientes</h1>
 
-  <form onsubmit="enviaForm(event); return false;" id="form1">
-    <p>
-      <label for="campoBox">Id:</label><br />
-      <select id="campoBox" name="box">
-        <option value="box1">Caixa 1</option>
-        <option value="box2">Caixa 2</option>
-      </select>
-    </p>
+  <div class="botoes">
+    <button type="button" onclick="clearForm()">Novo</button>
+    <button type="button" onclick="setData(event)">Salvar</button>
+  </div>
+
+  <table class="table-data">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th class="text-center">Opções</th>
+      </tr>
+    </thead>
+    <tbody id="dataContainer"></tbody>
+  </table>
+
+  <form  onsubmit="setData(event); return false;" id="form1">
     <p>
       <label for="campoId">Id:</label><br />
-      <input type="text" id="campoId" value="" name="id" />
+      <input type="text" id="campoId" disabled value="" name="id" />
     </p>
     <p>
       <label for="campoNome">Nome:</label><br />
       <input type="text" id="campoNome" value="" name="nome" />
     </p>
-    <div class="botoes">
-      <button type="submit">Enviar</button>
-      <button type="button" onclick="logData()">Log</button>
-      <button type="button" onclick="printData()">Ver dados</button>
-      <button type="button" onclick="limpa()">Limpar tela</button>
-      <button type="button" onclick="buscaId()">Busca ID</button>
-    </div>
   </form>
-
-  <h2>Box 1</h2>
-  <div id="box1" class="caixa"></div>
-
-  <h2>Box 2</h2>
-  <div id="box2" class="caixa"></div>
 </body>
-<script type="text/javascript" src="scripts/web.js"></script>
-<script type="text/javascript" src="scripts/data.js"></script>
+<script type="text/javascript" src="scripts/services/customer-service.js"></script>
 <script type="text/javascript">
-function enviaForm (event) {
+const customerService = new CustomerService()
+
+function setData (event) {
   event.preventDefault()
-  const obj = {
-    id: _e('campoId').value || new Date().getTime().toString(),
-    name: _e('campoNome').value,
-    box: _e('campoBox').value,
-    createdAt: new Date()
+  const customer = {
+    id: document.getElementById('campoId').value,
+    name: document.getElementById('campoNome').value
   }
-
-  addData(obj)
-  setHtml('box1', 'Dados enviados', false)
+  customerService.set(customer)
+  init()
 }
-function logData () {
-  const data = getData()
-  console.table(data)
+function addRow (data) {
+  const tbody = document.getElementById('dataContainer')
+  tbody.innerHTML += `
+    <tr>
+        <td>${data.id}</td>
+        <td>${data.name}</td>
+        <td class="text-center">
+          <a href="#editar" onclick="loadData('${data.id}')">Editar</a>
+        </td>
+    </tr>`
+}
+function clearForm () {
+  document.getElementById('form1').reset()
+}
+function clearTable () {
+  document.getElementById('dataContainer').innerHTML = ''
+}
+function loadData (id) {
+  const customer = customerService.getById(id)
+  document.getElementById('campoId').value = customer.id
+  document.getElementById('campoNome').value = customer.name
 }
 
-function printData () {
-  limpa()
-  const data = getData()
-  for (const obj of data) {
-    setHtml(
-      obj.box,
-      `Id: ${obj.id}, Nome: ${obj.name}, Criado em: ${obj.createdAt.toLocaleString()}`,
-      true
-    )
+function init () {
+  clearTable()
+  clearForm()
+  const customerArray = customerService.get()
+  for (customer of customerArray) {
+    addRow(customer)
   }
 }
 
-function limpa () {
-  // setHtml('box1', '', false)
-  // setHtml('box2', '', false)
-
-  const containers = ['box1', 'box2']
-
-  for (const item of containers) {
-    setHtml(item, '', false)
-  }
-  _e('form1').reset()
-}
-
-function buscaId () {
-  const id = window.prompt('Informe o ID')
-  const obj = getById(id)
-  _e('campoId').value = obj.id,
-  _e('campoNome').value = obj.name,
-  _e('campoBox').value = obj.box,
-  console.log(obj)
-}
+init()
 </script>
 
 </html>

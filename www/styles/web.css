@@ -36,6 +36,31 @@ code {
   margin-bottom: 1em;
 }
 
+.table-data {
+  width: 100%;
+  border: solid 1px #DDDDDD;
+}
+
+.table-data th,
+.table-data td {
+  text-align: left;
+  border-bottom: solid 1px #DDDDDD;
+  padding: 8px;
+}
+
+.table-data tr:last-child td {
+  border-bottom: none;
+}
+
+.table-data tr:hover td {
+  background-color: #f0f0f0;
+}
+
+
+.text-center {
+  text-align: center !important;
+}
+
 .botoes {
   margin-bottom: 1em;
 }

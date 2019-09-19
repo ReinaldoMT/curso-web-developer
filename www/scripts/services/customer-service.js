@@ -1,8 +1,4 @@
 class CustomerService {
-  constructor () {
-    const jsonData = localStorage.getItem('customers')
-    this.data = JSON.parse(jsonData) || []
-  }
 
   /**
    * Retorna um identificador único
@@ -14,24 +10,25 @@ class CustomerService {
   }
 
   getById (id) {
-    return this.data.find(x => x.id === id)
+    return JSON.parse(localStorage.getItem(`customer_${id}`))
   }
 
   get () {
-    return this.data
+    let arr = []
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i)
+      if (key.startsWith('customer_')) {
+        arr.push(JSON.parse(localStorage.getItem(key)))
+      }
+    }
+    return arr
   }
 
   set (data) {
-    if (data.id) {
-      const index = this.data.findIndex(x => x.id === data.id)
-      this.data[index] = data
-    } else {
-      // Se eu não tenho id no data, então é um novo registro
-      // Neste caso eu crio um novo uid para os novos dados
+    if (!data.id) {
       data.id = this.getUid()
-      this.data.push(data)
     }
-    const jsonData = JSON.stringify(this.data)
-    localStorage.setItem('customers', jsonData)
+    const jsonData = JSON.stringify(data)
+    localStorage.setItem(`customer_${data.id}`, jsonData)
   }
 }

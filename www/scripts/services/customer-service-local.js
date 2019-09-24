@@ -1,4 +1,4 @@
-class CustomerService {
+class CustomerServiceLocal {
 
   /**
    * Retorna um identificador único

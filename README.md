@@ -16,3 +16,21 @@ npm install -g serve
 serve
 ```
 
+### Servidor NODE
+```sh
+# instala o servidor com recarregamento automático
+npm install nodemon -g
+
+# para instalar todas as dependências
+cd server
+npm install
+
+# para rodar o servidor com autoreload
+nodemon server.js
+
+# para rodar o servidor simples
+npm run start
+
+# para atualizar pacotes
+npm update
+```

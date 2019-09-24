@@ -25,7 +25,7 @@
     <tbody id="dataContainer"></tbody>
   </table>
 
-  <form  onsubmit="setData(event); return false;" id="form1">
+  <form onsubmit="setData(event); return false;" id="form1">
     <p>
       <label for="campoId">Id:</label><br />
       <input type="text" id="campoId" disabled value="" name="id" />
@@ -36,23 +36,37 @@
     </p>
   </form>
 </body>
-<script type="text/javascript" src="scripts/services/customer-service-local.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script type="text/javascript" src="scripts/services/customer-service-client.js"></script>
 <script type="text/javascript">
-const customerService = new CustomerServiceLocal()
+const customerService = new CustomerServiceClient()
 
-function setData (event) {
+async function setData (event) {
   event.preventDefault()
   const customer = {
     id: document.getElementById('campoId').value,
     name: document.getElementById('campoNome').value
   }
-  customerService.set(customer)
-  init()
+  const res = await customerService.set(customer)
+  console.log(res)
+  const existingRow = document.getElementById(`row-${res.id}`)
+
+  if (existingRow) {
+    existingRow.innerHTML = `
+      <td>${res.id}</td>
+      <td>${res.name}</td>
+      <td class="text-center">
+        <a href="#editar" onclick="loadData('${res.id}')">Editar</a>
+      </td>
+    `
+  } else {
+    init()
+  }
 }
 function addRow (data) {
   const tbody = document.getElementById('dataContainer')
   tbody.innerHTML += `
-    <tr>
+    <tr id="row-${data.id}">
         <td>${data.id}</td>
         <td>${data.name}</td>
         <td class="text-center">
@@ -66,19 +80,20 @@ function clearForm () {
 function clearTable () {
   document.getElementById('dataContainer').innerHTML = ''
 }
-function loadData (id) {
-  const customer = customerService.getById(id)
+async function loadData (id) {
+  const customer = await customerService.getById(id)
   document.getElementById('campoId').value = customer.id
   document.getElementById('campoNome').value = customer.name
 }
 
-function init () {
+async function init () {
   clearTable()
   clearForm()
-  const customerArray = customerService.get()
+  const customerArray = await customerService.get()
   for (customer of customerArray) {
     addRow(customer)
   }
+  console.log('final')
 }
 
 init()

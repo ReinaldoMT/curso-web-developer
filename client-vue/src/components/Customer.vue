@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import { CustomerService } from '../services'
+import { CustomerService }  from '../services'
 const customerService = new CustomerService()
 
 export default {

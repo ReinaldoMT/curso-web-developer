@@ -1,8 +1,10 @@
-﻿using Api.Models;
-using Api.Repositories;
-using Api.ViewModels;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
+using Domain.Interfaces;
 
 namespace Api.Controllers
 {
@@ -10,52 +12,18 @@ namespace Api.Controllers
     [ApiController]
     public class CustomerController : ControllerBase
     {
-        private readonly CustomerRepository _customerRepository;
+        private readonly ICustomerRepository _customerRepository;
 
-        public CustomerController(CustomerRepository customerRepository)
+        public CustomerController(ICustomerRepository customerRepository)
         {
             _customerRepository = customerRepository;
         }
 
-        // GET: api/Customer
         [HttpGet]
         public ObjectResult Get()
         {
-            var customers = _customerRepository.Get();
-            return new ObjectResult(customers);
-        }
-
-        // GET: api/Customer/5
-        [HttpGet("{id}", Name = "Get")]
-        public ObjectResult Get(Guid id)
-        {
-            return new ObjectResult(_customerRepository.GetById(id));
-        }
-
-        // POST: api/Customer
-        [HttpPost]
-        public void Post([FromBody] CustomerViewModel viewModel)
-        {
-            if (viewModel.Id == null)
-                _customerRepository.Add(new Customer {
-                    Id = Guid.NewGuid(),
-                    Name = viewModel.Name,
-                    IsActive = viewModel.IsActive
-                });
-            else
-                _customerRepository.Update(viewModel.Id.Value, new Customer
-                {
-                    Id = viewModel.Id.Value,
-                    Name = viewModel.Name,
-                    IsActive = viewModel.IsActive
-                });
-        }
-
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(Guid id)
-        {
-            _customerRepository.Delete(id);
+            var result = _customerRepository.Get();
+            return new ObjectResult(result);
         }
     }
 }

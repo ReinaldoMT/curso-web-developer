@@ -2,16 +2,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Api.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Cors.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
+using Domain.Interfaces;
+using CrossCutting.IoC;
 
 namespace Api
 {
@@ -28,7 +29,12 @@ namespace Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddSingleton(typeof(CustomerRepository));
+
+            Bootstrapper.Configure(services);
+
+            //services.AddDbContext<ApiContext>(options =>
+            //        options.UseSqlServer(Configuration.GetConnectionString("ApiContext")));
+
 
             //services.AddCors(o => o.AddPolicy("ApiPolice", builder =>
             //{

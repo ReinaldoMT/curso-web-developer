@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Domain.Interfaces;
+using Domain.Models;
 
 namespace Api.Controllers
 {
@@ -24,6 +25,12 @@ namespace Api.Controllers
         {
             var result = _customerRepository.Get();
             return new ObjectResult(result);
+        }
+
+        [HttpPost]
+        public void Post([FromBody] Customer customer)
+        {
+            _customerRepository.Set(customer);
         }
     }
 }

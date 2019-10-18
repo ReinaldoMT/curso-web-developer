@@ -42,6 +42,7 @@ namespace Infra.EFData.Repositories
             {
                 _context.Customers.Add(customer);
             }
+            _context.SaveChanges();
         }
     }
 }

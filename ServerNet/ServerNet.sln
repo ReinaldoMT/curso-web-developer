@@ -5,13 +5,13 @@ VisualStudioVersion = 16.0.29403.142
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api", "Api\Api.csproj", "{4B369BAC-075B-4793-929F-AA9327954BE0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{810B34DA-B484-42C8-A710-738BD6273C9B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{810B34DA-B484-42C8-A710-738BD6273C9B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infra.LocalData", "Infra.LocalData\Infra.LocalData.csproj", "{6FB4178D-DA37-410B-B8E1-8ACAA1012211}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infra.LocalData", "Infra.LocalData\Infra.LocalData.csproj", "{6FB4178D-DA37-410B-B8E1-8ACAA1012211}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrossCutting.IoC", "CrossCutting.IoC\CrossCutting.IoC.csproj", "{71CA7719-9C92-4D79-8B49-D6FFEB490672}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrossCutting.IoC", "CrossCutting.IoC\CrossCutting.IoC.csproj", "{71CA7719-9C92-4D79-8B49-D6FFEB490672}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infra.EFData", "Infra.EFData\Infra.EFData.csproj", "{E35FE75B-73FE-4307-807C-5F41ECF5FF5B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infra.EFData", "Infra.EFData\Infra.EFData.csproj", "{E35FE75B-73FE-4307-807C-5F41ECF5FF5B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - Presentation", "0 - Presentation", "{DF83C67D-4471-48E7-ADFF-9A8B22CF8C9D}"
 EndProject

@@ -1,15 +1,18 @@
-﻿using System;
+﻿using Domain.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Domain.Models
 {
-    public class Customer
+
+    public class Customer : AbstractEntity, IBaseEntity
     {
-        public Guid Id { get; set; }
+        public Guid TenantId { get; set; }
+
         public string Name { get; set; }
         public string Address { get; set; }
         public bool IsActive { get; set; }
-        public bool IsDeleted { get; set; }
+        public string Telefone { get; set; }
     }
 }

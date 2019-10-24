@@ -4,6 +4,7 @@ using Domain.Interfaces;
 using Infra.EFData.Repositories;
 using Infra.EFData;
 using Microsoft.EntityFrameworkCore;
+using Domain.CommandHandlers;
 
 namespace CrossCutting.IoC
 {
@@ -16,6 +17,11 @@ namespace CrossCutting.IoC
             services.AddDbContext<ApplicationDbContext>(options => options.UseInMemoryDatabase("MemTable"));
 
             services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddScoped<IOrderItemRepository, OrderItemRepository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
+
+            services.AddScoped(typeof(CommandHandler));
         }
     }
 }

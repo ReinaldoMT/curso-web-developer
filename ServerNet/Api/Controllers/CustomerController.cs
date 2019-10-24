@@ -31,6 +31,15 @@ namespace Api.Controllers
         public void Post([FromBody] Customer customer)
         {
             _customerRepository.Set(customer);
+            Teste(customer);
+        }
+
+        private void Teste (IBaseEntity entity)
+        {
+            if (entity is Customer)
+            {
+                var customer = entity as Customer;
+            }
         }
     }
 }

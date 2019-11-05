@@ -1,1 +1,75 @@
 // app global css in Sass form
+$base-color: $blue-2
+
+
+body
+  padding: 0
+  margin: 0
+#app
+  font-family: 'Avenir', Helvetica, Arial, sans-serif
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  color: #2c3e50
+
+.main-menu
+  padding: 12px
+  border-bottom: solid 1px darken($base-color, 10%)
+  background-color: $base-color
+  a
+    text-decoration: none
+    color: darken($base-color, 30%)
+    &.router-link-exact-active
+      font-weight: bold
+
+.container
+  /* 0 12px 0 12px */
+  margin: 0 12px
+
+select, input[type='text']
+  padding: 6px
+
+input[type='text']
+  min-width: 400px
+
+button
+  padding: 10px
+  background-color: #3399FF
+  color: #FFFFFF
+  border: solid 1px #2277CC
+  &:hover
+    background-color: #2277CC
+
+code
+  background-color: #CCCCCC
+
+
+.caixa
+  background-color: #EAEAEA
+  border: solid 1px #DDDDDD
+  padding: 5px
+  box-shadow: 0 0 2px 2px #CCCCCC
+  border-radius: 5px
+  margin-bottom: 1em
+
+
+.table-data
+  width: 100%
+  border: solid 1px #DDDDDD
+  th, td
+    text-align: left
+    border-bottom: solid 1px #DDDDDD
+    padding: 8px
+  tr
+    &:last-child td
+      border-bottom: none
+    &:hover td
+      background-color: #f0f0f0
+
+
+.text-center
+  text-align: center !important
+
+
+.botoes
+  margin-bottom: 1em
+

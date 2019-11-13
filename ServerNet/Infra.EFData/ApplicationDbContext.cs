@@ -12,6 +12,7 @@ namespace Infra.EFData
         {
         }
 
+        public const string DatabaseSchema = "security";
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> GetOrderItems { get; set; }

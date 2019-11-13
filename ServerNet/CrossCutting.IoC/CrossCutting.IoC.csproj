@@ -12,6 +12,7 @@
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.0.0" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.0.1" />
     <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.6.0" />
   </ItemGroup>
 
